@@ -1,0 +1,3 @@
+cd apps/task-app
+npx lint-staged
+cd -

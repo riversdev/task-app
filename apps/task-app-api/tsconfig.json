@@ -1,0 +1,12 @@
+{
+  "extends": "@mono/typescript-config/tsconfig.base.json",
+  "compilerOptions": {
+    /* Path alias */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "outDir": "./dist"
+  },
+  "include": ["src", "vite.config.ts", "vite-env.d.ts"]
+}

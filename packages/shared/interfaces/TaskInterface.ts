@@ -12,7 +12,7 @@ export enum TaskStatus {
 
 export interface Task {
   id: string
-  createdAt: Date
+  createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
   title: string

@@ -1,5 +1,5 @@
 import { model, models, Schema } from 'mongoose'
-import type { Task } from '@/interfaces'
+import { TaskPriority, TaskStatus, type Task } from '@/interfaces'
 
 const taskSchema = new Schema<Task>({
   createdAt: {
@@ -26,8 +26,8 @@ const taskSchema = new Schema<Task>({
   },
   priority: {
     type: String,
-    enum: ['low', 'medium', 'high'],
-    default: 'medium',
+    enum: Object.values(TaskPriority),
+    default: TaskPriority.MEDIUM,
     required: [true, 'La prioridad es obligatoria'],
   },
   dueDate: {
@@ -37,10 +37,11 @@ const taskSchema = new Schema<Task>({
     type: String,
     trim: true,
   },
-  completed: {
-    type: Boolean,
-    default: false,
-    required: [true, 'El estado de completado es obligatorio'],
+  status: {
+    type: String,
+    enum: Object.values(TaskStatus),
+    default: TaskStatus.TODO,
+    required: [true, 'El estatus es obligatorio'],
   },
 })
 

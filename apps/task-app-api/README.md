@@ -62,6 +62,6 @@ Todos los endpoints están bajo el prefijo `/api/tasks`
   "priority": "medium",
   "dueDate": "2026-01-01T00:00:00.000Z",
   "assignedTo": "Chanchito feliz",
-  "completed": false
+  "status": "todo"
 }
 ```

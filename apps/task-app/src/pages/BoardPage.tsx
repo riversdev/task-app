@@ -3,9 +3,9 @@ import { AppLayout } from '@/layouts'
 import { Dropzone } from '@/components'
 import { TaskStatus } from '@/interfaces'
 
-export const HomePage = () => {
+export const BoardPage = () => {
   return (
-    <AppLayout title="Task App">
+    <AppLayout title="Task App" showNewTaskButton>
       <div className="container p-3">
         <Card bg="primary" className="h-100">
           <Card.Body className="overflow-auto position-relative">

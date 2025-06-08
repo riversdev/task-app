@@ -11,14 +11,21 @@ export enum TaskStatus {
 }
 
 export interface Task {
-  id: string
-  createdAt: Date | null
-  updatedAt: Date | null
-  deletedAt: Date | null
+  id: string | null
+  createdAt: string | null
+  updatedAt: string | null
+  deletedAt: string | null
   title: string
   description: string
   priority: TaskPriority | null
-  dueDate: Date | null
+  dueDate: string | null
   assignedTo: string | null
   status: TaskStatus
+}
+
+export interface TaskDocument extends Omit<Task, 'createdAt' | 'updatedAt' | 'deletedAt' | 'dueDate'> {
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
+  dueDate: Date | null
 }

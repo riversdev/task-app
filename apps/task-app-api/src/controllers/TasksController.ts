@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express'
 import { TaskModel } from '@/models'
-import type { ApiResponse, Task } from '@/interfaces'
+import type { ApiResponse, Task, TaskDocument } from '@/interfaces'
 
 export const getRecords = async (_req: Request, res: Response<ApiResponse<Task[]>>): Promise<void> => {
   try {
@@ -13,7 +13,7 @@ export const getRecords = async (_req: Request, res: Response<ApiResponse<Task[]
   }
 }
 
-export const getRecord = async (req: Request, res: Response<ApiResponse<Task>>): Promise<void> => {
+export const getRecord = async (req: Request<{ id: string }>, res: Response<ApiResponse<Task>>): Promise<void> => {
   const recordId = req.params.id
 
   try {
@@ -31,8 +31,11 @@ export const getRecord = async (req: Request, res: Response<ApiResponse<Task>>):
   }
 }
 
-export const postRecord = async (req: Request, res: Response<ApiResponse<Task>>): Promise<void> => {
-  const dueDate: Date = req.body.dueDate
+export const postRecord = async (
+  req: Request<{}, {}, TaskDocument>,
+  res: Response<ApiResponse<Task>>
+): Promise<void> => {
+  const dueDate = req.body.dueDate
 
   if (dueDate != null && dueDate.getTime() < new Date().getTime()) {
     res.status(400).json({ ok: false, msg: 'La fecha de vencimiento no puede ser anterior a la fecha actual' })
@@ -51,8 +54,11 @@ export const postRecord = async (req: Request, res: Response<ApiResponse<Task>>)
   }
 }
 
-export const putRecord = async (req: Request, res: Response<ApiResponse<Task>>): Promise<void> => {
-  const dueDate: Date = req.body.dueDate
+export const putRecord = async (
+  req: Request<{ id: string }, {}, TaskDocument>,
+  res: Response<ApiResponse<Task>>
+): Promise<void> => {
+  const dueDate = req.body.dueDate
 
   if (dueDate != null && dueDate.getTime() < new Date().getTime()) {
     res.status(400).json({ ok: false, msg: 'La fecha de vencimiento no puede ser anterior a la fecha actual' })
@@ -80,7 +86,10 @@ export const putRecord = async (req: Request, res: Response<ApiResponse<Task>>):
   }
 }
 
-export const deleteRecord = async (req: Request, res: Response<ApiResponse<boolean>>): Promise<void> => {
+export const deleteRecord = async (
+  req: Request<{ id: string }>,
+  res: Response<ApiResponse<boolean>>
+): Promise<void> => {
   const recordId = req.params.id
 
   try {

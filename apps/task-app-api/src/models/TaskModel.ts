@@ -1,7 +1,7 @@
 import { model, models, Schema } from 'mongoose'
-import { TaskPriority, TaskStatus, type Task } from '@/interfaces'
+import { TaskPriority, TaskStatus, type TaskDocument } from '@/interfaces'
 
-const taskSchema = new Schema<Task>({
+const taskSchema = new Schema<TaskDocument>({
   createdAt: {
     type: Date,
     default: Date.now,
@@ -51,4 +51,4 @@ taskSchema.methods.toJSON = function () {
   return { id: _id.toString(), ...task }
 }
 
-export const TaskModel = models.Task || model<Task>('Task', taskSchema)
+export const TaskModel = models.Task || model<TaskDocument>('Task', taskSchema)

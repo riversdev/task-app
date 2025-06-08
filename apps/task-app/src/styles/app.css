@@ -1,0 +1,11 @@
+.dropzone {
+    border: 2px dashed var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    height: 100%;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.dropzone.dragover {
+    background-color: rgba(var(--bs-info-rgb), 0.1);
+}

@@ -1,3 +1,1 @@
-import type { ApiResponse, Task } from '@mono/shared/interfaces'
-
-export type { ApiResponse, Task }
+export * from '@mono/shared/interfaces'

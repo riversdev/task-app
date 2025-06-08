@@ -9125,6 +9125,26 @@ textarea.form-control-lg {
   z-index: 3 !important;
 }
 
+.cursor-auto {
+  cursor: auto !important;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-wait {
+  cursor: wait !important;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
 @media (min-width: 576px) {
   .float-sm-start {
     float: left !important;

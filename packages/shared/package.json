@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "exports": {
-    "./interfaces": "./interfaces/index.ts"
+    "./interfaces": "./interfaces/index.ts",
+    "./utils": "./utils/index.ts"
   },
   "devDependencies": {
     "typescript": "~5.8.3"

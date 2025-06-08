@@ -1,7 +1,7 @@
 import { z } from 'zod'
-import { TaskPriority, TaskStatus } from '@/interfaces'
+import { TaskPriority, TaskStatus } from '../interfaces'
 
-export const TaskSchema = z.object({
+export const taskSchema = z.object({
   id: z.string().nullable(),
   createdAt: z
     .string()
@@ -40,3 +40,5 @@ export const TaskSchema = z.object({
       message: 'Ingresa solo estatus válidos como todo, in-progress o done',
     }),
 })
+
+export type TaskDTO = z.infer<typeof taskSchema>

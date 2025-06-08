@@ -5,7 +5,11 @@
   "type": "module",
   "exports": {
     "./interfaces": "./interfaces/index.ts",
+    "./schemas": "./schemas/index.ts",
     "./utils": "./utils/index.ts"
+  },
+  "dependencies": {
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "typescript": "~5.8.3"

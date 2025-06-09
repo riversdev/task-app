@@ -27,7 +27,7 @@ export const Navbar = ({ title, bgTransparent, showNewTaskButton = false }: Prop
             {showNewTaskButton && (
               <Nav.Link as={Link} to="/tasks/new" viewTransition className="d-flex align-items-center">
                 <h6 className="text-info mb-0">
-                  <i className="fa-solid fa-plus-circle me-2"></i> NUEVA TAREA
+                  <i className="fa-solid fa-plus-circle me-1"></i> NEW TASK
                 </h6>
               </Nav.Link>
             )}

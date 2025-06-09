@@ -6,7 +6,7 @@ import type { Task, ApiResponse, ErrorResponse } from '@/interfaces'
 const { API_URL } = getEnvVariables()
 
 export const tasksApi = createApi({
-  reducerPath: 'tasks',
+  reducerPath: 'tasks-api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
     headers: {

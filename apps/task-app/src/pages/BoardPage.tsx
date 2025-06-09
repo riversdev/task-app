@@ -1,22 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
 import { AppLayout } from '@/layouts'
-import { Dropzone, StaticAlert } from '@/components'
-import { useApiTasks } from '@/hooks'
-import { useGetTasksQuery } from '@/store/tasks'
+import { Dropzone, SearchBar, StaticAlert } from '@/components'
+import { useApiTasks, useAppDispatch, useAppSelector } from '@/hooks'
+import { setTasks, updateFilteredTasks, useGetTasksQuery } from '@/store/tasks'
 import { TaskStatus, type ErrorResponse, type Task } from '@/interfaces'
 
 export const BoardPage = () => {
+  const { tasks, filteredTasks } = useAppSelector(state => state.tasks)
+  const dispatch = useAppDispatch()
   const { data, isLoading, isFetching, error } = useGetTasksQuery(null)
   const { updateTask } = useApiTasks(false)
-  const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    if (data) setTasks(data)
-  }, [data])
+    dispatch(updateFilteredTasks())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setTasks(data))
+      dispatch(updateFilteredTasks())
+    }
+  }, [data, dispatch])
 
   const handleDropTask = (task: Task) => {
-    setTasks(tasks.map(x => (x.id === task.id ? task : x)))
+    dispatch(setTasks(tasks.map(x => (x.id === task.id ? task : x))))
+    dispatch(updateFilteredTasks())
 
     updateTask(task)
   }
@@ -33,6 +42,7 @@ export const BoardPage = () => {
         </div>
       ) : (
         <div className="container-xxl p-3">
+          <SearchBar />
           <Card bg="primary" className="h-100">
             <Card.Body className="overflow-auto position-relative">
               <Row className="h-100" style={{ minWidth: '60rem', minHeight: '30rem' }}>
@@ -41,7 +51,7 @@ export const BoardPage = () => {
                     title="To do"
                     description="This hasnt been started"
                     type={TaskStatus.TODO}
-                    tasks={tasks.filter(x => x.status === TaskStatus.TODO)}
+                    tasks={filteredTasks.filter(x => x.status === TaskStatus.TODO)}
                     handleDropTask={handleDropTask}
                   />
                 </Col>
@@ -50,7 +60,7 @@ export const BoardPage = () => {
                     title="In progress"
                     description="This is being worked on"
                     type={TaskStatus.IN_PROGRESS}
-                    tasks={tasks.filter(x => x.status === TaskStatus.IN_PROGRESS)}
+                    tasks={filteredTasks.filter(x => x.status === TaskStatus.IN_PROGRESS)}
                     handleDropTask={handleDropTask}
                   />
                 </Col>
@@ -59,7 +69,7 @@ export const BoardPage = () => {
                     title="Done"
                     description="This has been completed"
                     type={TaskStatus.DONE}
-                    tasks={tasks.filter(x => x.status === TaskStatus.DONE)}
+                    tasks={filteredTasks.filter(x => x.status === TaskStatus.DONE)}
                     handleDropTask={handleDropTask}
                   />
                 </Col>

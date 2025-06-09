@@ -1,14 +1,14 @@
+import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router'
-import { ToastContainer } from 'react-bootstrap'
 import { AppRouter } from '@/router'
+import { store } from '@/store'
 
 export const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
-      <ToastContainer position="top-center" draggable />
-    </>
+    </Provider>
   )
 }

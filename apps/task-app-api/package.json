@@ -7,8 +7,7 @@
     "dev": "vite-node --watch src/index.ts",
     "format": "prettier --write .",
     "build": "tsc && vite build",
-    "preview": "node dist/index.cjs",
-    "vercel-build": "npm run build"
+    "preview": "node dist/index.cjs"
   },
   "dependencies": {
     "@mono/shared": "*",

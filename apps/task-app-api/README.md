@@ -1,4 +1,4 @@
-# Task App API
+# Task App - API
 
 API REST simple para gestionar tareas. Permite crear, leer, actualizar y eliminar tareas (CRUD), desarrollada con Node.js, Express, TypeScript y MongoDB.
 
@@ -16,7 +16,7 @@ API REST simple para gestionar tareas. Permite crear, leer, actualizar y elimina
 
 ```bash
 git clone https://github.com/riversdev/task-app.git
-cd task-app/task-app-api
+cd task-app/apps/task-app-api
 ```
 
 2. Instala las dependencias:
@@ -31,11 +31,9 @@ npm install
 
 ## Scripts
 
-`npm run dev` - Inicia el servidor en modo desarrollo
-
-`npm run build` - Compila el proyecto
-
-`npm run preview` - Ejecuta el servidor desde la carpeta dist que genera la compilación
+- `npm run dev`: Inicia el servidor en modo desarrollo
+- `npm run build`: Compila el proyecto
+- `npm run preview`: Ejecuta el servidor desde la carpeta dist que genera la compilación
 
 ## Endpoints
 

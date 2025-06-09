@@ -24,18 +24,16 @@ export const SearchBar = () => {
   }, [debouncedFilterTerm, dispatch])
 
   return (
-    <div className="mb-3">
-      <InputGroup>
-        <Form.Control
-          type="search"
-          size="lg"
-          placeholder="what are you looking for..."
-          value={filterTerm}
-          onChange={({ target: { value } }) => setFilterTerm(value)}
-        />
-        <SearchBarHelpInfo />
-      </InputGroup>
-    </div>
+    <InputGroup>
+      <Form.Control
+        type="search"
+        size="lg"
+        placeholder="what are you looking for..."
+        value={filterTerm}
+        onChange={({ target: { value } }) => setFilterTerm(value)}
+      />
+      <SearchBarHelpInfo />
+    </InputGroup>
   )
 }
 

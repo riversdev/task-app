@@ -41,11 +41,13 @@ export const BoardPage = () => {
           <StaticAlert type="primary" icon="fa-spin fa-spinner" message="Searching tasks" />
         </div>
       ) : (
-        <div className="container-xxl p-3">
-          <SearchBar />
+        <div className="container-xxl px-3 py-4">
           <Card bg="primary" className="h-100">
-            <Card.Body className="overflow-auto position-relative">
-              <Row className="h-100" style={{ minWidth: '60rem', minHeight: '30rem' }}>
+            <Card.Body>
+              <SearchBar />
+            </Card.Body>
+            <Card.Body className="overflow-auto position-relative d-flex flex-column h-100">
+              <Row className="flex-fill" style={{ minWidth: '60rem', minHeight: '30rem' }}>
                 <Col xs={4}>
                   <Dropzone
                     title="To do"

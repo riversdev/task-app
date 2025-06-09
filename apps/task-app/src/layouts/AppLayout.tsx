@@ -14,7 +14,7 @@ export const AppLayout = ({ title, children, showNewTaskButton }: Props) => {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Navbar title={title} bgTransparent showNewTaskButton={showNewTaskButton} />
+      <Navbar title={title} showNewTaskButton={showNewTaskButton} />
       <div className="flex-fill d-flex flex-row">{children}</div>
       <Footer />
     </div>

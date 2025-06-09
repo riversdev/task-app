@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router'
 import { Container, Nav, Navbar as RBNavbar } from 'react-bootstrap'
+import { useAppSelector } from '@/hooks'
+import { downloadTaskFilter } from '@/helpers'
 
 interface Props {
   title: string
@@ -9,6 +11,7 @@ interface Props {
 
 export const Navbar = ({ title, bgTransparent, showNewTaskButton = false }: Props) => {
   const { pathname } = useLocation()
+  const { filteredTasks } = useAppSelector(state => state.tasks)
 
   return (
     <RBNavbar
@@ -25,13 +28,20 @@ export const Navbar = ({ title, bgTransparent, showNewTaskButton = false }: Prop
         {pathname !== '/' && (
           <Nav>
             {showNewTaskButton && (
-              <Nav.Link as={Link} to="/tasks/new" viewTransition className="d-flex align-items-center">
-                <h6 className="text-info mb-0">
-                  <i className="fa-solid fa-plus-circle me-1"></i> NEW TASK
-                </h6>
-              </Nav.Link>
+              <>
+                <Nav.Link as={Link} to="/tasks/new" viewTransition className="d-flex align-items-center">
+                  <h6 className="text-info mb-0 text-truncate">
+                    <i className="fa-solid fa-plus-circle me-1"></i> NEW TASK
+                  </h6>
+                </Nav.Link>
+                <Nav.Link className="d-flex align-items-center" onClick={() => downloadTaskFilter(filteredTasks)}>
+                  <h6 className="text-info mb-0 text-truncate">
+                    <i className="fa-solid fa-download me-1"></i> DOWNLOAD FILTER
+                  </h6>
+                </Nav.Link>
+              </>
             )}
-            <Nav.Link as={Link} to="/" viewTransition>
+            <Nav.Link as={Link} to="/" viewTransition className="text-truncate">
               Cerrar sesión
             </Nav.Link>
           </Nav>

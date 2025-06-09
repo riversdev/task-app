@@ -2,6 +2,8 @@
 
 Monorepo para la aplicación de gestión de tareas, compuesto por un frontend en React, un backend en Express y paquetes compartidos. Administrado con **Turborepo**, formateado con **Prettier** y verificado con **Commitlint** + **Husky**.
 
+![preview](preview.png)
+
 ## Estructura del proyecto
 
 ```

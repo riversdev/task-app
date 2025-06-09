@@ -62,7 +62,7 @@ const SearchBarHelpInfo = () => (
           <p className="mb-0">
             A complete filter should be:
             <br />
-            <code>priority:high asigned-by:Alejandro due-date:2025-05-01 title description</code>
+            <code>priority:high assigned-to:Alejandro due-date:2025-05-01 title description</code>
           </p>
         </Popover.Body>
       </Popover>

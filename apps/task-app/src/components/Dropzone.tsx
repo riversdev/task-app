@@ -1,29 +1,20 @@
 import { useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
 import { TaskCard } from '@/components'
-import { TaskPriority, TaskStatus, type Task } from '@/interfaces'
-
-const exampleTask: Task = {
-  id: '683cf3a25e9c0a0d57767307',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  deletedAt: null,
-  title: 'Search gems',
-  description: 'Find the time gem',
-  priority: TaskPriority.MEDIUM,
-  dueDate: new Date('2025-11-01'),
-  assignedTo: 'Alejandro Ríos',
-  status: TaskStatus.TODO,
-}
+import { TaskStatus, type Task } from '@/interfaces'
+import { useAppSelector } from '@/hooks'
+import { tasksApi } from '@/store/tasks'
 
 interface Props {
   title: string
   description: string
   type: TaskStatus
   tasks: Task[]
+  handleDropTask: (task: Task) => void
 }
 
-export const Dropzone = ({ title, description, type }: Props) => {
+export const Dropzone = ({ title, description, type, tasks, handleDropTask }: Props) => {
+  const cachedTasks = useAppSelector(tasksApi.endpoints.getTasks.select(null))
   const [isDragover, setIsDragover] = useState(false)
 
   const handleDragEnter = (e: React.DragEvent) => {
@@ -48,15 +39,11 @@ export const Dropzone = ({ title, description, type }: Props) => {
 
     const taskId = e.dataTransfer.getData('text/plain')
 
-    handleTaskUpdate(taskId, type)
-  }
+    const task = (cachedTasks.data || []).find(x => x.id === taskId)
 
-  const handleTaskUpdate = (taskId: string, newStatus: TaskStatus) => {
-    console.log(`Task ${taskId} updated to status ${newStatus}`)
-  }
+    if (!task || task.status === type) return
 
-  const handleTaskDelete = (taskId: string) => {
-    console.log(`Task ${taskId} deleted`)
+    handleDropTask({ ...task, status: type })
   }
 
   return (
@@ -70,9 +57,11 @@ export const Dropzone = ({ title, description, type }: Props) => {
       <Card.Title className="fw-bold">{title}</Card.Title>
       <Card.Text className="mb-4">{description}</Card.Text>
       <Row>
-        <Col xs={12}>
-          <TaskCard task={exampleTask} handleTaskDelete={handleTaskDelete} />
-        </Col>
+        {tasks.map(task => (
+          <Col key={task.id} xs={12}>
+            <TaskCard task={task} />
+          </Col>
+        ))}
       </Row>
     </div>
   )

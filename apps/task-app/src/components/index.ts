@@ -1,4 +1,5 @@
 export * from './Dropzone'
 export * from './Footer'
 export * from './Navbar'
+export * from './StaticAlert'
 export * from './TaskCard'
